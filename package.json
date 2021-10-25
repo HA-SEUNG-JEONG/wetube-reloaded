@@ -2,9 +2,8 @@
   "name": "wetube-reloaded",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec babel-node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +14,14 @@
   "bugs": {
     "url": "https://github.com/HA-SEUNG-JEONG/wetube-reloaded/issues"
   },
-  "homepage": "https://github.com/HA-SEUNG-JEONG/wetube-reloaded#readme"
+  "homepage": "https://github.com/HA-SEUNG-JEONG/wetube-reloaded#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.14"
+  }
 }
