@@ -22,9 +22,6 @@ const handlePlayClick = (event) => {
   playbutton.innerText = video.paused ? "Play" : "Pause";
 };
 
-const handlePause = () => (playbutton.innerText = "Play");
-const handlePlay = () => (playbutton.innerText = "Pause");
-
 const handleMute = (event) => {
   if (video.muted) {
     video.muted = false;
@@ -49,15 +46,15 @@ const handleVolumeChange = (event) => {
   //   console.log("video.volume", video.volume);
 };
 
-const formateTime = (seconds) =>
+const formattingTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleLoadedMetadata = () => {
-  totaltime.innerText = formateTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
+  totaltime.innerText = formattingTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
 };
 
 const hadnleTimeUpdate = () => {
-  currenttime.innerText = formateTime(Math.floor(video.currentTime));
+  currenttime.innerText = formattingTime(Math.floor(video.currentTime)); // 현재 시간을 실시간으로 반영
 };
 
 playbutton.addEventListener("click", handlePlayClick);
