@@ -4,6 +4,7 @@ const mutebutton = document.getElementById("mute");
 const volumeRange = document.getElementById("volume");
 const currenttime = document.getElementById("currenttime");
 const totaltime = document.getElementById("totaltime");
+const timeline = document.getElementById("timeline");
 
 video.volume = 0.5;
 
@@ -51,10 +52,19 @@ const formattingTime = (seconds) =>
 
 const handleLoadedMetadata = () => {
   totaltime.innerText = formattingTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
+  timeline.max = Math.floor(video.duration);
 };
 
 const hadnleTimeUpdate = () => {
   currenttime.innerText = formattingTime(Math.floor(video.currentTime)); // 현재 시간을 실시간으로 반영
+  timeline.value = Math.floor(video.currentTime);
+};
+
+const handleTimelineChange = (event) => {
+  const {
+    target: { value },
+  } = event;
+  video.currentTime = value;
 };
 
 playbutton.addEventListener("click", handlePlayClick);
@@ -62,6 +72,7 @@ mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", hadnleTimeUpdate);
+timeline.addEventListener("input", handleTimelineChange);
 
 if (video.readyState == 4) {
   handleLoadedMetadata();
