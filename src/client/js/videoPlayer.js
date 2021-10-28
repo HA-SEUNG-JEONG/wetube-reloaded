@@ -1,8 +1,9 @@
 const video = document.querySelector("video");
 const playbutton = document.getElementById("play");
 const mutebutton = document.getElementById("mute");
-const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
+const currenttime = document.getElementById("currenttime");
+const totaltime = document.getElementById("totaltime");
 
 video.volume = 0.5;
 
@@ -48,6 +49,20 @@ const handleVolumeChange = (event) => {
   //   console.log("video.volume", video.volume);
 };
 
+const handleLoadedMetadata = () => {
+  totaltime.innerText = Math.floor(video.duration); //영상의 총 시간을 알 수 있음
+};
+
+const hadnleTimeUpdate = () => {
+  currenttime.innerText = Math.floor(video.currentTime);
+};
+
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
+video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("timeupdate", hadnleTimeUpdate);
+
+if (video.readyState == 4) {
+  handleLoadedMetadata();
+}
