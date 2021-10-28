@@ -5,6 +5,8 @@ const volumeRange = document.getElementById("volume");
 const currenttime = document.getElementById("currenttime");
 const totaltime = document.getElementById("totaltime");
 const timeline = document.getElementById("timeline");
+const fullscreenbutton = document.getElementById("fullscreen");
+const videocontainer = document.getElementById("videoContainer");
 
 video.volume = 0.5;
 
@@ -67,12 +69,24 @@ const handleTimelineChange = (event) => {
   video.currentTime = value;
 };
 
+const handleFullScreen = () => {
+  const fullscreen = document.fullscreenElement;
+  if (fullscreen) {
+    document.exitFullscreen();
+    fullscreenbutton.innerText = "Enter Full Screen";
+  } else {
+    videocontainer.requestFullscreen(); //element에서 불러와야 함
+    fullscreenbutton.innerText = "Exit Full Screen";
+  }
+};
+
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", hadnleTimeUpdate);
 timeline.addEventListener("input", handleTimelineChange);
+fullscreenbutton.addEventListener("click", handleFullScreen);
 
 if (video.readyState == 4) {
   handleLoadedMetadata();
