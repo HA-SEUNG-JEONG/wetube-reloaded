@@ -49,12 +49,15 @@ const handleVolumeChange = (event) => {
   //   console.log("video.volume", video.volume);
 };
 
+const formateTime = (seconds) =>
+  new Date(seconds * 1000).toISOString().substr(14, 5);
+
 const handleLoadedMetadata = () => {
-  totaltime.innerText = Math.floor(video.duration); //영상의 총 시간을 알 수 있음
+  totaltime.innerText = formateTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
 };
 
 const hadnleTimeUpdate = () => {
-  currenttime.innerText = Math.floor(video.currentTime);
+  currenttime.innerText = formateTime(Math.floor(video.currentTime));
 };
 
 playbutton.addEventListener("click", handlePlayClick);
