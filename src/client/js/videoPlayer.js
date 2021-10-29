@@ -7,9 +7,11 @@ const totaltime = document.getElementById("totaltime");
 const timeline = document.getElementById("timeline");
 const fullscreenbutton = document.getElementById("fullscreen");
 const videocontainer = document.getElementById("videoContainer");
+const videoControls = document.getElementById("videoControls");
 
 video.volume = 0.5;
 
+let controlsTimeout = null;
 let volumeValue = 0.5; //전역 변수
 video.volume = volumeValue;
 // console.log("video.volume", video.volume);
@@ -80,6 +82,19 @@ const handleFullScreen = () => {
   }
 };
 
+const handleMouseMove = () => {
+  if (controlsTimeout) {
+    clearTimeout(controlsTimeout);
+    controlsTimeout = null;
+  }
+  videoControls.classList.add("showing");
+};
+
+const handleMouseLeave = () => {
+  controlsTimeout = setTimeout(() => {
+    videoControls.classList.remove("showing");
+  }, 3000);
+};
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -87,6 +102,8 @@ video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", hadnleTimeUpdate);
 timeline.addEventListener("input", handleTimelineChange);
 fullscreenbutton.addEventListener("click", handleFullScreen);
+video.addEventListener("mousemove", handleMouseMove);
+video.addEventListener("mouseleave", handleMouseLeave);
 
 if (video.readyState == 4) {
   handleLoadedMetadata();
