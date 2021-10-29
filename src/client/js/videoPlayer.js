@@ -1,3 +1,5 @@
+const { set } = require("mongoose");
+
 const video = document.querySelector("video");
 const playbutton = document.getElementById("play");
 const mutebutton = document.getElementById("mute");
@@ -12,6 +14,7 @@ const videoControls = document.getElementById("videoControls");
 video.volume = 0.5;
 
 let controlsTimeout = null;
+let controlsMovemenTimeout = null;
 let volumeValue = 0.5; //전역 변수
 video.volume = volumeValue;
 // console.log("video.volume", video.volume);
@@ -82,18 +85,23 @@ const handleFullScreen = () => {
   }
 };
 
+const hideControls = () => videoControls.classList.remove("showing");
+
 const handleMouseMove = () => {
   if (controlsTimeout) {
     clearTimeout(controlsTimeout);
     controlsTimeout = null;
   }
+  if (controlsMovemenTimeout) {
+    clearTimeout(controlsMovemenTimeout);
+    controlsMovemenTimeout = null;
+  }
   videoControls.classList.add("showing");
+  controlsMovemenTimeout = setTimeout(hideControls, 3000);
 };
 
 const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(() => {
-    videoControls.classList.remove("showing");
-  }, 3000);
+  controlsTimeout = setTimeout(hideControls, 3000);
 };
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
