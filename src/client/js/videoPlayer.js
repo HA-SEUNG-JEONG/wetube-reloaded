@@ -1,25 +1,25 @@
-const { set } = require("mongoose");
-
 const video = document.querySelector("video");
 const playbutton = document.getElementById("play");
+const playbuttonicon = playbutton.querySelector("i");
 const mutebutton = document.getElementById("mute");
+const mutebuttonicon = mutebutton.querySelector("i");
 const volumeRange = document.getElementById("volume");
 const currenttime = document.getElementById("currenttime");
 const totaltime = document.getElementById("totaltime");
 const timeline = document.getElementById("timeline");
-const fullscreenbutton = document.getElementById("fullscreen");
+const fullscreenbutton = document.getElementById("fullScreen");
+const fullScreenIcon = fullscreenbutton.querySelector("i");
 const videocontainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
 video.volume = 0.5;
 
 let controlsTimeout = null;
-let controlsMovemenTimeout = null;
+let controlsMovementTimeout = null;
 let volumeValue = 0.5; //전역 변수
 video.volume = volumeValue;
-// console.log("video.volume", video.volume);
 
-const handlePlayClick = (event) => {
+const handlePlayClick = () => {
   //if the video is playing, pause it
   if (video.paused) {
     video.play();
@@ -27,16 +27,18 @@ const handlePlayClick = (event) => {
   else {
     video.pause();
   }
-  playbutton.innerText = video.paused ? "Play" : "Pause";
+  playbuttonicon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
-const handleMute = (event) => {
+const handleMute = () => {
   if (video.muted) {
     video.muted = false;
   } else {
     video.muted = true;
   }
-  mutebutton.innerText = video.muted ? "UnMute" : "Mute";
+  mutebuttonicon.classList = video.muted
+    ? "fas fa-volume-mute"
+    : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
@@ -49,9 +51,7 @@ const handleVolumeChange = (event) => {
     mutebutton.innerText = "Mute";
   }
   volumeValue = value;
-  //   console.log("volumeValue", volumeValue);
   video.volume = value;
-  //   console.log("video.volume", video.volume);
 };
 
 const formattingTime = (seconds) =>
@@ -74,14 +74,15 @@ const handleTimelineChange = (event) => {
   video.currentTime = value;
 };
 
-const handleFullScreen = () => {
+const handleFullScreen = (event) => {
+  console.log(event);
   const fullscreen = document.fullscreenElement;
   if (fullscreen) {
     document.exitFullscreen();
-    fullscreenbutton.innerText = "Enter Full Screen";
+    fullScreenIcon.classList = "fas fa-expand";
   } else {
     videocontainer.requestFullscreen(); //element에서 불러와야 함
-    fullscreenbutton.innerText = "Exit Full Screen";
+    fullScreenIcon.classList = "fas fa-compress";
   }
 };
 
@@ -92,26 +93,47 @@ const handleMouseMove = () => {
     clearTimeout(controlsTimeout);
     controlsTimeout = null;
   }
-  if (controlsMovemenTimeout) {
-    clearTimeout(controlsMovemenTimeout);
-    controlsMovemenTimeout = null;
+  if (controlsMovementTimeout) {
+    clearTimeout(controlsMovementTimeout);
+    controlsMovementTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovemenTimeout = setTimeout(hideControls, 3000);
+  controlsMovementTimeout = setTimeout(hideControls, 3000);
 };
 
 const handleMouseLeave = () => {
   controlsTimeout = setTimeout(hideControls, 3000);
 };
+
+const handleSpace = (event) => {
+  const SPACE_BAR = 32;
+
+  if (event.which === SPACE_BAR) {
+    handleButton();
+  }
+};
+
+const handleButton = () => {
+  if (video.paused) {
+    playbuttonicon.classList = "fas fa-pause";
+    video.play();
+  } else {
+    playbuttonicon.classList = "fas fa-play";
+    video.pause();
+  }
+};
+
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
-video.addEventListener("timeupdate", hadnleTimeUpdate);
-timeline.addEventListener("input", handleTimelineChange);
-fullscreenbutton.addEventListener("click", handleFullScreen);
+videocontainer.addEventListener("loadeddata", handleLoadedMetadata);
+videocontainer.addEventListener("timeupdate", hadnleTimeUpdate);
+video.addEventListener("click", handleButton);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+timeline.addEventListener("input", handleTimelineChange);
+fullscreenbutton.addEventListener("click", handleFullScreen);
+document.addEventListener("keydown", handleSpace);
 
 if (video.readyState == 4) {
   handleLoadedMetadata();
