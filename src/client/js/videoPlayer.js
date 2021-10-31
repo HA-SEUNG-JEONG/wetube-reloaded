@@ -123,6 +123,14 @@ const handleButton = () => {
   }
 };
 
+const handleEnded = () => {
+  const { id } = videocontainer.dataset;
+  fetch(`/api/videos/${id}/view`, {
+    method: "POST",
+  });
+  //fetch는 get 요청을 보내기 때문에 POST method를 추가한다.
+};
+
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -131,6 +139,8 @@ videocontainer.addEventListener("timeupdate", hadnleTimeUpdate);
 video.addEventListener("click", handleButton);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+//User가 비디오 시청을 끝냈을 때 생기는 이벤트 추가
+video.addEventListener("ended", handleEnded);
 timeline.addEventListener("input", handleTimelineChange);
 fullscreenbutton.addEventListener("click", handleFullScreen);
 document.addEventListener("keydown", handleSpace);

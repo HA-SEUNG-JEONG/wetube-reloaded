@@ -5,8 +5,8 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
-import { localsMiddleware } from "./middleware";
 import apiRouter from "./routers/apiRouter";
+import { localsMiddleware } from "./middleware";
 
 const app = express();
 const logger = morgan("dev");
