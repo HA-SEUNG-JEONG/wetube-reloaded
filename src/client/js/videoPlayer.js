@@ -9,7 +9,7 @@ const totaltime = document.getElementById("totaltime");
 const timeline = document.getElementById("timeline");
 const fullscreenbutton = document.getElementById("fullScreen");
 const fullScreenIcon = fullscreenbutton.querySelector("i");
-const videocontainer = document.getElementById("videoContainer");
+const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
 video.volume = 0.5;
@@ -81,7 +81,7 @@ const handleFullScreen = (event) => {
     document.exitFullscreen();
     fullScreenIcon.classList = "fas fa-expand";
   } else {
-    videocontainer.requestFullscreen(); //element에서 불러와야 함
+    videoContainer.requestFullscreen(); //element에서 불러와야 함
     fullScreenIcon.classList = "fas fa-compress";
   }
 };
@@ -124,23 +124,24 @@ const handleButton = () => {
 };
 
 const handleEnded = () => {
-  const { id } = videocontainer.dataset;
+  const { id } = videoContainer.dataset;
   fetch(`/api/videos/${id}/view`, {
     method: "POST",
   });
-  //fetch는 get 요청을 보내기 때문에 POST method를 추가한다.
 };
 
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
-videocontainer.addEventListener("loadeddata", handleLoadedMetadata);
-videocontainer.addEventListener("timeupdate", hadnleTimeUpdate);
+videoContainer.addEventListener("loadedmetadata", handleLoadedMetadata);
+videoContainer.addEventListener("timeupdate", hadnleTimeUpdate);
 video.addEventListener("click", handleButton);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+
 //User가 비디오 시청을 끝냈을 때 생기는 이벤트 추가
 video.addEventListener("ended", handleEnded);
+
 timeline.addEventListener("input", handleTimelineChange);
 fullscreenbutton.addEventListener("click", handleFullScreen);
 document.addEventListener("keydown", handleSpace);
