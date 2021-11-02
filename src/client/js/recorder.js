@@ -3,11 +3,13 @@ const startbutton = document.getElementById("startbutton");
 const video = document.getElementById("preview");
 
 let stream;
+let recorder;
 
 const handleStop = () => {
-  startbutton.innerText = "Start Recording";
+  startbutton.innerText = "Download Recording";
   startbutton.removeEventListener("click", handleStop);
   startbutton.addEventListener("click", handleStart);
+  recorder.stop();
 };
 
 const handleStart = () => {
@@ -15,19 +17,17 @@ const handleStart = () => {
   startbutton.removeEventListener("click", handleStart);
   startbutton.addEventListener("click", handleStop);
 
-  const recorder = new MediaRecorder(stream);
+  recorder = new MediaRecorder(stream);
   recorder.ondataavailable = (event) => {
-    console.log("recording done");
-    console.log(event);
-    console.log(event.data);
+    const videoFile = URL.createObjectURL(event.data);
+    // console.log(event.data); //event에 대한 데이터
+    video.srcObject = null;
+    video.src = videoFile;
+    video.loop = true; //video를 반복 재생
+    video.play();
   };
 
-  console.log(recorder);
   recorder.start();
-  console.log(recorder);
-  setTimeout(() => {
-    recorder.stop();
-  }, 10000);
 };
 
 const init = async () => {
