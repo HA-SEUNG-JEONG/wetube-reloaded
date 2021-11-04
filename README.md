@@ -1,8 +1,6 @@
 # Wetube Reloaded
 
-<ul>
-  <li>/ -> Home /join -> Join </li>
-</ul>
+<ul>/ -> Home</ul>
 
 /login -> Login 
 /search -> Search
