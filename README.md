@@ -1,9 +1,8 @@
 # Wetube Reloaded
 
 <ul>/ -> Home</ul>
-
-/login -> Login 
-/search -> Search
+<ul>/login -> Login</ul>
+<ul>/search -> Search</ul>
 
 /users/:id -> See User /users/logout -> Log Out /users/edit -> Edit MY Profile /users/delete -> Delete MY Profile
 
