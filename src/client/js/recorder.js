@@ -1,5 +1,6 @@
 import regeneratorRuntime from "regenerator-runtime";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+import { set } from "mongoose";
 //ffmpeg는 영상을 변환해서 오디오파일로 만들거나 포맷을 변환해줌.
 const actionbutton = document.getElementById("actionbutton");
 const video = document.getElementById("preview");
@@ -73,18 +74,9 @@ const handleDownload = async () => {
   actionbutton.addEventListener("click", handleStart);
 };
 
-const handleStop = () => {
-  actionbutton.innerText = "Download Recording";
-  actionbutton.removeEventListener("click", handleStop);
-  actionbutton.addEventListener("click", handleDownload);
-  recorder.stop();
-};
-
 const handleStart = () => {
-  actionbutton.innerText = "Stop Recording";
-  actionbutton.removeEventListener("click", handleStart);
-  actionbutton.addEventListener("click", handleStop);
-
+  actionbutton.innerText = "Recording";
+  actionbutton.disabled = true;
   recorder = new MediaRecorder(stream);
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data);
@@ -93,16 +85,22 @@ const handleStart = () => {
     video.src = videoFile;
     video.loop = true; //video를 반복 재생
     video.play();
+    actionbutton.innerText = "Download";
+    actionbutton.disabled = false;
+    actionbutton.addEventListener("click", handleDownload);
   };
 
   recorder.start();
+  setTimeout(() => {
+    recorder.stop();
+  }, 5000);
 };
 
 const init = async () => {
   //mediaDevices는 promise 반환
   stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
-    video: { width: 100, height: 100 },
+    video: { width: 1920, height: 1080 },
   });
   video.srcObject = stream;
   video.play();
