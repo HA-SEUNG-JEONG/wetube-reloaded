@@ -151,5 +151,9 @@ export const createComment = async (req, res) => {
   });
   video.comments.push(comment._id);
   video.save();
-  return res.sendStatus(201); //code 201 == created
+  return res.status(201).json({
+    fakeCommentId: comment._id, //comment._id: 새로 만들어진 댓글의 id
+  }); //code 201 == created
 };
+
+export const deletecomment = async (req, res) => {};
