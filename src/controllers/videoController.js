@@ -158,10 +158,9 @@ export const createComment = async (req, res) => {
 
 export const deleteComment = async (req, res) => {
   const {
-    params: { id: commentId },
     session: { user },
+    params: { id: commentId },
   } = req;
-  console.log(commentId);
   const comment = await Comment.findById(commentId)
     .populate("video")
     .populate("owner");

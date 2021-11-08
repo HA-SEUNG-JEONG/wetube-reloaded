@@ -1,7 +1,7 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const button = form.querySelector("button");
-const deletebutton = document.querySelectorAll(".deletebutton");
+const deletebuttons = document.querySelectorAll(".deletebutton");
 
 const handleDelete = async (event) => {
   const li = event.srcElement.parentNode;
@@ -33,6 +33,8 @@ const addComment = (text, id) => {
   fakeComments.appendChild(span2);
   // console.log("fakecomments:", fakeComments); //li 태그 안에 icon과 span 내 내용이 들어감
   videoComments.prepend(fakeComments); //prepend를 쓰면 최신 댓글이 맨 위로 올라옴
+
+  span2.addEventListener("click", handleDelete);
 };
 
 const handleSubmit = async (event) => {
@@ -62,8 +64,8 @@ if (form) {
   form.addEventListener("submit", handleSubmit);
 }
 
-if (deletebutton) {
-  deletebutton.forEach((deletebutton) =>
+if (deletebuttons) {
+  deletebuttons.forEach((deletebutton) =>
     deletebutton.addEventListener("click", handleDelete)
   );
 }
