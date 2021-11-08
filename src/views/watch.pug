@@ -42,7 +42,8 @@ block content
                 li.video__comment(data-id=comment.id)
                     i.fas.fa-comment
                     span #{comment.text}
-                    span ❌
+                    if (loggedInUser._id === String(comment.owner._id))
+                        span.deletebutton ❌
 block scripts
     script(src="/assets/js/videoPlayer.js")
     if loggedIn

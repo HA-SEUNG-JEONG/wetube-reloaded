@@ -156,4 +156,21 @@ export const createComment = async (req, res) => {
   }); //code 201 == created
 };
 
-export const deletecomment = async (req, res) => {};
+export const deleteComment = async (req, res) => {
+  const {
+    params: { id: commentId },
+    session: { user },
+  } = req;
+  console.log(commentId);
+  const comment = await Comment.findById(commentId)
+    .populate("video")
+    .populate("owner");
+  if (!comment) {
+    return res.sendStatus(404);
+  }
+  if (String(user._id) !== String(comment.owner._id)) {
+    return res.Status(403).redirect("/");
+  }
+  await Comment.findByIdAndDelete(commentId);
+  return res.status(200).redirect(`/videos/${comment.video._id}`);
+};
