@@ -1,20 +1,15 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const button = form.querySelector("button");
-const deletebuttons = document.querySelectorAll(".deletebutton");
+const comments = document.querySelectorAll(".video__comment");
 
 const handleDelete = async (event) => {
-  const li = event.srcElement.parentNode;
-  const {
-    dataset: { id: commentId },
-  } = li;
-  li.remove();
-  const response = await fetch(`/api/comments/${commentId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  event.preventDefault();
+  const comment = event.path[2];
+  const commentId = comment.dataset.id;
+  const response = await fetch(`/api/comment/${commentId}/delete`, {
+    method: "DELETE",
   });
+  comment.remove();
 };
 
 const addComment = (text, id) => {
@@ -28,6 +23,8 @@ const addComment = (text, id) => {
   span.innerText = ` ${text}`;
   const span2 = document.createElement("span");
   span2.innerText = "❌";
+  const span3 = document.createElement("span");
+  span3.innerText = "👉";
   fakeComments.appendChild(icon); //i 태그 안에 있는 icon
   fakeComments.appendChild(span); //span 안에 들어있는 댓글 내용
   fakeComments.appendChild(span2);
@@ -64,8 +61,10 @@ if (form) {
   form.addEventListener("submit", handleSubmit);
 }
 
-if (deletebuttons) {
-  deletebuttons.forEach((deletebutton) =>
-    deletebutton.addEventListener("click", handleDelete)
-  );
+if (comments) {
+  for (const commentIndex of comments) {
+    const deleteBtn = commentIndex.querySelector("#delete");
+
+    deleteBtn.addEventListener("click", handleDelete);
+  }
 }

@@ -15,8 +15,8 @@ apiRouter.post(
   protectorMiddleware,
   createComment
 );
-apiRouter.get(
-  "/comments/:id([0-9a-f]{24})",
+apiRouter.delete(
+  "/comment/:id([0-9a-f]{24})/delete",
   protectorMiddleware,
   deleteComment
 );
