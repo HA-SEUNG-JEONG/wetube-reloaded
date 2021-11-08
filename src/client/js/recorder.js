@@ -99,8 +99,8 @@ const handleStart = () => {
 const init = async () => {
   //mediaDevices는 promise 반환
   stream = await navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: { width: 1920, height: 1080 },
+    audio: true,
+    video: false,
   });
   video.srcObject = stream;
   video.play();

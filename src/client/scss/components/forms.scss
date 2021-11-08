@@ -11,15 +11,16 @@ form {
 
 input:not(input[type="range"]),
 input[type="submit"] {
+  background-color: white;
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
   margin-bottom: 5px;
   font-size: 16px;
   color: white;
   width: 90%;
+  font-weight: 600;
   &::placeholder {
     color: rgba(255, 255, 255, 0.7);
   }
@@ -27,9 +28,9 @@ input[type="submit"] {
 
 input[type="submit"],
 .social__btn {
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 12px 20px;
-  background-color: white !important;
+  background-color: #afb5bb !important;
   color: rgba($color: $red, $alpha: 1) !important;
   text-align: center !important;
   cursor: pointer;
