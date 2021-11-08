@@ -173,3 +173,18 @@ export const deleteComment = async (req, res) => {
   await Comment.findByIdAndDelete(id);
   return res.sendStatus(200);
 };
+
+export const editComment = async (req, res) => {
+  const {
+    session: { user },
+    params: { id },
+  } = req;
+
+  const comment = await Comment.findById(id).populate("video");
+  const videoId = comment.video._id;
+  const video = await Video.findById(videoId);
+  await video.comments.pop({ _id: id });
+  await video.save();
+  await Comment.findByIdAndUpdate(id);
+  return res.sendStatus(200);
+};

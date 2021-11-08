@@ -12,6 +12,61 @@ const handleDelete = async (event) => {
   comment.remove();
 };
 
+const handleEdit = async (event) => {
+  event.preventDefault();
+  const comment = event.path[2];
+  const commentId = comment.dataset.id;
+  const icon = comment.childNodes[0];
+  const span = comment.childNodes[1];
+  const change = comment.lastChild;
+  const text = span.innerText;
+  console.log(comment, commentId, icon, span.style, change, text);
+
+  const textarea = document.createElement("input");
+  const submitBtn = document.createElement("button");
+  const cancelBtn = document.createElement("button");
+
+  textarea.value = text;
+  console.log(textarea.value);
+
+  submitBtn.innerText = "Edit";
+  cancelBtn.innerText = "Cancel";
+
+  comment.appendChild(textarea);
+  comment.appendChild(submitBtn);
+  comment.appendChild(cancelBtn);
+
+  const commentInit = () => {
+    textarea.remove();
+    submitBtn.remove();
+    cancelBtn.remove();
+
+    icon.style.removeProperty("display");
+    change.style.removeProperty("display");
+    span.style.removeProperty("display");
+  };
+
+  cancelBtn.onclick = () => {
+    commentInit();
+    return;
+  };
+
+  submitBtn.onclick = async (event) => {
+    event.preventDefault();
+    span.innerText = textarea.value;
+    commentInit();
+
+    await fetch(`/api/comment/${commentId}/edit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: textarea.value,
+      }),
+    });
+  };
+};
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
   const fakeComments = document.createElement("li");
@@ -21,17 +76,24 @@ const addComment = (text, id) => {
   icon.className = "fas fa-comment";
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
+  const div = document.createElement("div");
+  div.className = "comment__change";
   const span2 = document.createElement("span");
   span2.innerText = "❌";
+  span2.className = "comment__delete";
   const span3 = document.createElement("span");
-  span3.innerText = "👉";
+  span3.innerText = "🖌";
+  span3.className = "comment__edit";
   fakeComments.appendChild(icon); //i 태그 안에 있는 icon
   fakeComments.appendChild(span); //span 안에 들어있는 댓글 내용
-  fakeComments.appendChild(span2);
+  fakeComments.appendChild(div);
+  div.appendChild(span2);
+  div.appendChild(span3);
   // console.log("fakecomments:", fakeComments); //li 태그 안에 icon과 span 내 내용이 들어감
   videoComments.prepend(fakeComments); //prepend를 쓰면 최신 댓글이 맨 위로 올라옴
 
   span2.addEventListener("click", handleDelete);
+  span3.addEventListener("click", handleEdit);
 };
 
 const handleSubmit = async (event) => {
@@ -64,7 +126,8 @@ if (form) {
 if (comments) {
   for (const commentIndex of comments) {
     const deleteBtn = commentIndex.querySelector("#delete");
-
+    const editBtn = commentIndex.querySelector("#edit");
     deleteBtn.addEventListener("click", handleDelete);
+    editBtn.addEventListener("click", handleEdit);
   }
 }

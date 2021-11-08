@@ -3,6 +3,7 @@ import {
   registerView,
   createComment,
   deleteComment,
+  editComment,
 } from "../controllers/videoController";
 
 import { protectorMiddleware } from "../middleware";
@@ -21,4 +22,9 @@ apiRouter.delete(
   deleteComment
 );
 
+apiRouter.post(
+  "/comment/:id([0-9a-f]{24})/edit",
+  protectorMiddleware,
+  editComment
+);
 export default apiRouter;
