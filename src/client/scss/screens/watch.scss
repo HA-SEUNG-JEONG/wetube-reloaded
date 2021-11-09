@@ -4,17 +4,19 @@
   flex-direction: column;
   .video__title {
     font-size: 26px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
   }
   .video__createdDate {
     font-size: 12px;
+    margin-bottom: 15px;
   }
   .video__owner {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-size: 14px;
     a {
       color: cornflowerblue;
-      text-decoration: underline;
+      text-decoration: none;
+      font-weight: 600;
     }
   }
 }
@@ -27,10 +29,39 @@
   margin: 0 auto;
   margin-top: 20px;
   .video__comment {
+    width: 100%;
     padding: 10px;
-    border-radius: 9999px;
+    border-radius: 15px;
     background-color: white;
     color: black;
     margin-bottom: 10px;
+    .comment__change {
+      .comment__edit,
+      .comment__delete {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+    }
+    i {
+      margin-right: 20px;
+    }
+  }
+}
+
+.video__add-comments {
+  .video__comment-form {
+    textarea {
+      padding: 0 100px;
+      display: flex;
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+  }
+  button {
+    background-color: #3ea6ff;
+    font-weight: 600;
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
   }
 }
