@@ -10,8 +10,8 @@
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
     "build:server": "babel src -d build",
-    "dev:server": "nodemon",
     "build:assets": "webpack --mode=production",
+    "dev:server": "nodemon",
     "dev:assets": "webpack --mode=development -w"
   },
   "repository": {
@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/HA-SEUNG-JEONG/wetube-reloaded#readme",
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
     "bcrypt": "^5.0.1",
