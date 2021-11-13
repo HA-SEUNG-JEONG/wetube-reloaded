@@ -141,7 +141,6 @@ video.addEventListener("mouseleave", handleMouseLeave);
 
 //User가 비디오 시청을 끝냈을 때 생기는 이벤트 추가
 video.addEventListener("ended", handleEnded);
-
 timeline.addEventListener("input", handleTimelineChange);
 fullscreenbutton.addEventListener("click", handleFullScreen);
 document.addEventListener("keydown", handleSpace);
