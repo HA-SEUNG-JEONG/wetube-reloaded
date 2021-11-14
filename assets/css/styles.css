@@ -140,7 +140,7 @@ header {
 }
 header .header__logo {
   color: #ff0000;
-  font-size: 38px;
+  font-size: 40px;
 }
 header ul {
   display: flex;
@@ -153,14 +153,17 @@ header ul li {
   font-weight: 600;
   text-transform: uppercase;
 }
-header ul i {
+header ul li a {
   font-size: 16px;
+}
+header ul i {
+  font-size: 18px;
 }
 header .header__btn {
   background-color: white;
   color: #181818;
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 header .header__avatar {
   width: 40px;
@@ -171,26 +174,31 @@ header .header__avatar {
 footer {
   text-align: center;
   font-size: 12px;
-  opacity: 0.8;
   margin-top: 50px;
+  font-weight: 600;
 }
 
 .video-mixin .video-mixin__thumb {
   height: 140px;
-  border-radius: 7px;
   width: 100%;
   background-color: ivory;
+  margin-bottom: 20px;
+}
+.video-mixin .video-mixin__thumb img {
+  width: 100%;
+  height: 100%;
 }
 .video-mixin .video-mixin__data {
+  font-weight: 600;
   padding: 0px 15px;
+  display: flex;
+  justify-content: flex-end;
 }
 .video-mixin .video-mixin__data .video-mixin__title {
-  font-size: 18px;
-  display: block;
-  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 12px;
 }
 .video-mixin .video-mixin__data .video-mixin__meta {
-  margin-top: 5px;
   font-size: 12px;
 }
 
@@ -203,14 +211,19 @@ footer {
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-left: 30px;
 }
 
 .auth-switch {
   text-align: center;
   margin-top: 40px;
 }
+.auth-switch span {
+  margin-right: 5px;
+}
 .auth-switch a {
-  text-decoration: underline;
+  color: #5151a2;
+  font-weight: 600;
 }
 
 .avatar {
@@ -220,40 +233,52 @@ footer {
 }
 
 form {
-  max-width: 420px;
+  max-width: 300px;
   margin: 0 auto;
 }
 form:not(.search__form) {
   padding: 30px;
   background-color: rgba(24, 24, 24, 0.7);
-  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-input {
+input:not(input[type=range]),
+input[type=submit] {
+  background-color: white;
   all: unset;
   padding: 15px 20px;
-  border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-size: 16px;
   color: white;
   width: 90%;
+  cursor: pointer;
 }
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+input:not(input[type=range])::placeholder,
+input[type=submit]::placeholder {
+  color: #ffffff;
+  opacity: 0.8;
 }
 
 input[type=submit],
 .social__btn {
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 12px 20px;
-  background-color: white;
-  color: red;
-  text-align: center;
+  background-color: #afb5bb !important;
+  color: red !important;
+  text-align: center !important;
   cursor: pointer;
   display: block;
+  border: none;
+}
+input[type=submit]:focus,
+.social__btn:focus {
+  outline: none;
+}
+input[type=submit]:disabled,
+.social__btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .social-login {
@@ -264,6 +289,59 @@ input[type=submit],
 .social-login .social__btn--github {
   background-color: transparent;
   color: azure;
+  font-weight: 600;
+}
+
+#videoContainer {
+  width: 100%;
+  position: relative;
+}
+#videoContainer video {
+  width: 100%;
+}
+#videoContainer .videoControls {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  align-items: center;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr auto;
+  gap: 10px;
+  justify-content: space-between;
+  background-color: #0f1117;
+  padding: 10px;
+  left: 0;
+  box-sizing: border-box;
+}
+#videoContainer .videoControls.showing {
+  opacity: 1;
+}
+#videoContainer .videoControls .videoControls__play {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__playBtn {
+  margin: 0px 15px;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__time {
+  font-size: 12px;
+}
+#videoContainer .videoControls .videoControls__volume {
+  display: flex;
+  align-items: center;
+}
+#videoContainer .videoControls .videoControls__volume span {
+  margin-left: 10px;
+}
+#videoContainer .videoControls .videoControls__volume span i {
+  font-size: 20px;
 }
 
 .search__form {
@@ -274,14 +352,12 @@ input[type=submit],
 }
 .search__form input {
   all: unset;
-  padding: 15px 20px;
-  border-radius: 5px;
+  padding: 0 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: black;
-  margin-bottom: 5px;
   font-size: 16px;
   color: white;
-  width: 90%;
+  width: 100%;
 }
 .search__form button {
   all: unset;
@@ -293,6 +369,7 @@ input[type=submit],
   background-color: rgba(0, 0, 0, 0);
   text-align: center;
   cursor: pointer;
+  color: cornflowerblue;
 }
 
 form label {
@@ -306,7 +383,84 @@ form label {
   text-align: center;
 }
 .edit-profile__password a {
-  text-decoration: underline;
+  color: #5151a2;
+  font-weight: 600;
+}
+
+.video__data {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.video__data .video__title {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+.video__data .video__createdDate {
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.video__data .video__owner {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.video__data .video__owner a {
+  color: cornflowerblue;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.video__comments .video__comment {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
+}
+.video__comments .video__comment .comment__change .comment__edit,
+.video__comments .video__comment .comment__change .comment__delete {
+  margin-right: 20px;
+  cursor: pointer;
+}
+.video__comments .video__comment i {
+  margin-right: 20px;
+}
+
+.video__add-comments .video__comment-form textarea {
+  padding: 0 100px;
+  display: flex;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+.video__add-comments button {
+  background-color: #3ea6ff;
+  font-weight: 600;
+  border-radius: 10px;
+  display: flex;
+  padding: 10px;
+}
+
+.upload__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.upload__container .upload__video {
+  margin-bottom: 100px;
+  margin-right: 50px;
+}
+.upload__container .upload__video video {
+  max-width: 100%;
+  margin-bottom: 10px;
 }
 
 a {
@@ -325,4 +479,34 @@ main {
   width: 100%;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px;
+  padding: 10px 20px;
+  border-radius: 10000px;
+  text-align: center;
+  font-weight: 600;
+  animation: goAway 0.5s ease-in-out;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+}
+.message.error {
+  background-color: red;
+  color: white;
 }
