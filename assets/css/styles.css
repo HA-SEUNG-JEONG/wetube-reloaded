@@ -426,6 +426,10 @@ form label {
   color: black;
   margin-bottom: 10px;
 }
+.video__comments .video__comment .comment__change input {
+  background-color: wheat;
+  color: black;
+}
 .video__comments .video__comment .comment__change .comment__edit,
 .video__comments .video__comment .comment__change .comment__delete {
   margin-right: 20px;
