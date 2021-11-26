@@ -32,10 +32,14 @@
     width: 100%;
     padding: 10px;
     border-radius: 15px;
-    background-color: white;
+    background-color: blue;
     color: black;
     margin-bottom: 10px;
     .comment__change {
+      input {
+        background-color: wheat;
+        color: black;
+      }
       .comment__edit,
       .comment__delete {
         margin-right: 20px;
