@@ -75,8 +75,14 @@ export const startGithubLogin = (req, res) => {
 export const finishGithubLogin = async (req, res) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
   const config = {
-    client_id: process.env.GH_CLIENT,
-    client_secret: process.env.GH_SECRET,
+    client_id:
+      process.env.NODE_ENV === "production"
+        ? process.env.GH_CLIENT_DEPLOY
+        : process.env.GH_CLIENT_DEV,
+    client_secret:
+      process.env.NODE_ENV === "production"
+        ? process.env.GH_SECRET_DEPLOY
+        : process.env.GH_SECRET_DEV,
     code: req.query.code,
   };
   const params = new URLSearchParams(config).toString();
@@ -159,10 +165,11 @@ export const postEdit = async (req, res) => {
       errorMessage: "this username/email is already taken.",
     });
   }
+  const isHeroku = process.env.NODE_ENV === "production";
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.location : avatarUrl,
+      avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
       name,
       email,
       username,
