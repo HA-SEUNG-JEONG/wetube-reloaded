@@ -77,11 +77,11 @@ export const finishGithubLogin = async (req, res) => {
   const config = {
     client_id:
       process.env.NODE_ENV === "production"
-        ? process.env.GH_CLIENT_DEPLOY
+        ? process.env.GH_CLIENT
         : process.env.GH_CLIENT_DEV,
     client_secret:
       process.env.NODE_ENV === "production"
-        ? process.env.GH_SECRET_DEPLOY
+        ? process.env.GH_SECRET
         : process.env.GH_SECRET_DEV,
     code: req.query.code,
   };
