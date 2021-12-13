@@ -2,7 +2,7 @@
 
 <h3>NodeJS와 WebPack을 이용한 유튜브 클론 코딩</h3>
 <h5>Video</h5>
-<li>CRUD</li>
+<li>Video CRUD</li>
 <li>영상 조회수 기록</li>
 <li>동영상에 달린 댓글 작성,편집,삭제</li>
 <li>비디오 녹화</li>
