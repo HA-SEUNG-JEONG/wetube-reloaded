@@ -3,6 +3,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    from(#fc7b7b),
+    to(#a6c1ff)
+  );
   .header__logo {
     color: $red;
     font-size: 40px;
@@ -34,5 +41,11 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+  }
+  span {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: rgb(185, 62, 81);
+    font-weight: 600;
+    font-size: 30px;
   }
 }

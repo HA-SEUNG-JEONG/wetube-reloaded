@@ -10,17 +10,16 @@ form {
 
 input:not(input[type="range"]),
 input[type="submit"] {
-  background-color: white;
+  background-color: black;
   all: unset;
-  padding: 15px 20px;
+  margin: 15px 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 10px;
   font-size: 16px;
   color: white;
   width: 90%;
   cursor: pointer;
   &::placeholder {
-    color: #ffffff;
+    color: black;
     opacity: 0.8;
   }
 }

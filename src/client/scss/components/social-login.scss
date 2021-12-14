@@ -2,9 +2,14 @@
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 30px;
   margin-top: 30px;
+  margin-left: 10px;
   .social__btn--github {
     background-color: transparent;
     color: azure;
     font-weight: 600;
+    margin-left: 10px;
+    i {
+      margin-right: 10px;
+    }
   }
 }
