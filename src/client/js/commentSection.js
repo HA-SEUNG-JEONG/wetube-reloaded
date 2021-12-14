@@ -20,14 +20,12 @@ const handleEdit = async (event) => {
   const span = comment.childNodes[1];
   const change = comment.lastChild;
   const text = span.innerText;
-  console.log(comment, commentId, icon, span.style, change, text);
 
   const textarea = document.createElement("input");
   const submitBtn = document.createElement("button");
   const cancelBtn = document.createElement("button");
 
   textarea.value = text;
-  console.log(textarea.value);
 
   submitBtn.innerText = "Edit";
   cancelBtn.innerText = "Cancel";
