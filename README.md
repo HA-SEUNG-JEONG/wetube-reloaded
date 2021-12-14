@@ -1,19 +1,21 @@
 # Wetube Reloaded
 
-<ul>/ -> Home</ul>
-<ul>/login -> Login</ul>
-<ul>/search -> Search</ul>
+<h3>NodeJS와 WebPack을 이용한 유튜브 클론 코딩</h3>
+<h5>Video</h5>
+<li>Video CRUD</li>
+<li>영상 조회수 기록</li>
+<li>동영상에 달린 댓글 작성,편집,삭제</li>
+<li>비디오 녹화</li>
+<li>비디오 플레이어 - 음소거 기능,전체화면,Time Formatting</li>
 
-<ul>/users/:id -> See User </ul>
-<ul>/users/logout -> Log Out </ul>
-<ul>/users/edit -> Edit MY Profile h</ul>
-<ul>/users/delete -> Delete MY Profile</ul>
+<h5>User</h5>
+<li>로그인,로그아웃,깃허브 로그인</li>
+<li>회원가입</li>
+<li>사용자 인증</li>
+<li>프로필 수정</li>
+<li>썸네일 업로드</li>
 
 
-<ul>/videos/:id -> See Video</ul>
-<ul>/videos/:id/edit -> Edit Video</ul>
-<ul>/videos/:id/delete -> Delete Video</ul>
-<ul>/videos/upload -> Upload Video</ul>
 
 
 
