@@ -4,12 +4,13 @@
 }
 .video-grid {
   display: grid;
+  z-index: 1;
   gap: 50px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  z-index: -1;
   img {
     grid-template-rows: 1fr;
-    width: 100%;
+    gap: 50px;
+    width: 120%;
     height: 100%;
     margin: 0 auto;
   }
@@ -22,7 +23,7 @@
     color: black;
   }
   a {
-    color: rgb(81, 81, 162);
+    color: blue;
     font-weight: 600;
   }
 }
