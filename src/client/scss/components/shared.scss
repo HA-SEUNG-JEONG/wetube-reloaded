@@ -1,30 +1,19 @@
 .empty__message {
-  margin-left: 30px;
-  font-size: 20px;
+  margin-top: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
 }
 .video-grid {
   display: grid;
-  z-index: 1;
   gap: 50px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  .home-ground {
-    grid-template-rows: 1fr;
-    gap: 50px;
-    width: 120%;
-    height: 100%;
-    margin: 0 auto;
-  }
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .auth-switch {
   text-align: center;
   margin-top: 40px;
-  span {
-    margin-right: 5px;
-    color: black;
-  }
   a {
-    color: blue;
-    font-weight: 600;
+    text-decoration: underline;
   }
 }
 
