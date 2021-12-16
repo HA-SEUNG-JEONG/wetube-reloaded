@@ -2,12 +2,13 @@ extends base
 include mixins/video
 
 block content
-    div.menu
-        span 아이유
-        span 러블리즈
-
     div.video-grid
         each video in videos
             +video(video)
         else
             span.empty__message No videos
+            
+    div.menu
+        span 채널 탐색(하단 링크를 눌러보세요!)
+        a(href="https://www.youtube.com/c/dlwlrma")  아이유 ✨
+        a(href="https://www.youtube.com/channel/UCtF9Njo6rLI8U2ZrJ_cFzHQ")  러블리즈 ✨
