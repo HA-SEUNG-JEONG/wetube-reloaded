@@ -3,9 +3,6 @@ include mixins/video
 
 block content
     div.video-grid
-        img(src="images/iu.jpg").home-ground
-        img(src="images/jisoo.png").home-ground
-
         each video in videos
             +video(video)
         else
