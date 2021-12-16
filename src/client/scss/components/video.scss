@@ -5,6 +5,9 @@
     height: 140px;
     border-radius: 7px;
     background-color: ivory;
+    img {
+      width: 100%;
+    }
   }
   .video-mixin__data {
     padding: 0px 15px;
