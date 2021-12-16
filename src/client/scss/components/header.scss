@@ -1,5 +1,6 @@
 header {
-  padding: 20px 50px;
+  padding: 20px 60px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,16 +11,24 @@ header {
     from(#fc7b7b),
     to(#a6c1ff)
   );
+
   .header__logo {
     color: $red;
     font-size: 40px;
-  }
-  ul {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: 600;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+  }
+  nav {
+    width: 20%;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 100px;
+    }
     li {
-      margin-left: 30px;
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
@@ -41,11 +50,5 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-  }
-  span {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    color: rgb(185, 62, 81);
-    font-weight: 600;
-    font-size: 30px;
   }
 }

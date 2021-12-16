@@ -1,7 +1,8 @@
 header
+    i.fas.fa-bars.fa-lg
     a(href="/").header__logo
-        i.fab.fa-youtube.fa-lg
-    span IUTUBE 
+        i.fab.fa-youtube.fa-lg IUTUBE
+        
     nav
         ul
             li
@@ -26,6 +27,6 @@ header
                                     img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
             else             
                 li
-                    a(href="/login").fas.fa-user  Login                        
+                    a(href="/login").fas.fa-user.fa-lg  Login                        
                 li
-                    a(href="/join").fas.fa-sign-in-alt.header__btn  Join
+                    a(href="/join").fas.fa-sign-in-alt.header__btn.fa-lg  Join
