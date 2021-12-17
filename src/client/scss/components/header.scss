@@ -16,9 +16,12 @@ header {
     color: $red;
     font-size: 40px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
     display: flex;
     justify-content: center;
+    span {
+      font-weight: 300;
+      font-family: serif;
+    }
   }
   nav {
     width: 20%;
