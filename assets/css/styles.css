@@ -149,7 +149,6 @@ header .header__logo {
 }
 header .header__logo span {
   font-weight: 300;
-  font-family: serif;
 }
 header nav {
   width: 20%;
@@ -200,6 +199,7 @@ footer {
   width: 100%;
   height: 100%;
   margin: 0 25px;
+  border-radius: 25px;
 }
 .video-mixin .video-mixin__data {
   padding: 0px 15px;
@@ -418,6 +418,7 @@ form label {
 
 .video__data {
   margin-top: 20px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -437,6 +438,7 @@ form label {
   color: cornflowerblue;
   text-decoration: none;
   font-weight: 600;
+  margin-left: 5px;
 }
 
 .video__comments {

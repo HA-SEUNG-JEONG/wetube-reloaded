@@ -1,5 +1,6 @@
 .video__data {
   margin-top: 20px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   .video__title {
@@ -17,6 +18,7 @@
       color: cornflowerblue;
       text-decoration: none;
       font-weight: 600;
+      margin-left: 5px;
     }
   }
 }
