@@ -1,8 +1,8 @@
 header {
-  padding: 20px 60px;
+  padding: 20px 0px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background: -webkit-gradient(
     linear,
@@ -23,12 +23,12 @@ header {
     }
   }
   nav {
-    width: 20%;
+    width: 30%;
     ul {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-right: 100px;
+      margin-left: 100px;
     }
     li {
       font-size: 14px;
