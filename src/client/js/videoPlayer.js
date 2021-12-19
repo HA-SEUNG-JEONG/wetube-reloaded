@@ -54,23 +54,25 @@ const handleVolumeChange = (event) => {
   video.volume = value;
 };
 
-const formattingTime = (seconds) =>
-  new Date(seconds * 1000).toISOString().substring(14, 5);
+const formatTime = (seconds) =>
+  new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleLoadedMetadata = () => {
-  totaltime.innerText = formattingTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
-  timeline.max = video.duration;
+  totalTime.innerText = formatTime(Math.floor(video.duration));
+  timeline.max = Math.floor(video.duration);
 };
 
-const hadnleTimeUpdate = () => {
-  currentTime.innerText = formattingTime(Math.floor(video.currentTime)); // 현재 시간을 실시간으로 반영
+const handleTimeUpdate = () => {
+  currentTime.innerText = formatTime(Math.floor(video.currentTime));
   timeline.value = Math.floor(video.currentTime);
 };
 
+// <Timeline>
 const handleTimelineChange = (event) => {
   const {
     target: { value },
   } = event;
+
   video.currentTime = value;
 };
 
@@ -81,7 +83,7 @@ const handleFullScreen = (event) => {
     document.exitFullscreen();
     fullScreenIcon.classList = "fas fa-expand";
   } else {
-    videoContainer.requestFullscreen(); //element에서 불러와야 함
+    videoContainer.requestFullscreen();
     fullScreenIcon.classList = "fas fa-compress";
   }
 };
