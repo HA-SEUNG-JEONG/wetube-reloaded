@@ -4,7 +4,7 @@ const playbuttonicon = playbutton.querySelector("i");
 const mutebutton = document.getElementById("mute");
 const mutebuttonicon = mutebutton.querySelector("i");
 const volumeRange = document.getElementById("volume");
-const currenttime = document.getElementById("currenttime");
+const currentTime = document.getElementById("currentTime");
 const totaltime = document.getElementById("totaltime");
 const timeline = document.getElementById("timeline");
 const fullscreenbutton = document.getElementById("fullScreen");
@@ -63,15 +63,15 @@ const handleLoadedMetadata = () => {
 };
 
 const hadnleTimeUpdate = () => {
-  currenttime.innerText = formattingTime(Math.floor(video.currenttime)); // 현재 시간을 실시간으로 반영
-  timeline.value = Math.floor(video.currenttime);
+  currentTime.innerText = formattingTime(Math.floor(video.currentTime)); // 현재 시간을 실시간으로 반영
+  timeline.value = Math.floor(video.currentTime);
 };
 
 const handleTimelineChange = (event) => {
   const {
     target: { value },
   } = event;
-  video.currenttime = value;
+  video.currentTime = value;
 };
 
 const handleFullScreen = (event) => {
