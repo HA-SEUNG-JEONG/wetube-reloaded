@@ -77,10 +77,10 @@ const addComment = (text, id) => {
   const div = document.createElement("div");
   div.className = "comment__change";
   const span2 = document.createElement("span");
-  span2.innerText = "❌";
+  span2.innerText = "삭제";
   span2.className = "comment__delete";
   const span3 = document.createElement("span");
-  span3.innerText = "🖌";
+  span3.innerText = "편집";
   span3.className = "comment__edit";
   fakeComments.appendChild(icon); //i 태그 안에 있는 icon
   fakeComments.appendChild(span); //span 안에 들어있는 댓글 내용
