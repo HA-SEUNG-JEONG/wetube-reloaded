@@ -5,7 +5,7 @@ const mutebutton = document.getElementById("mute");
 const mutebuttonicon = mutebutton.querySelector("i");
 const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime");
-const totaltime = document.getElementById("totaltime");
+const totalTime = document.getElementById("totalTime");
 const timeline = document.getElementById("timeline");
 const fullscreenbutton = document.getElementById("fullScreen");
 const fullScreenIcon = fullscreenbutton.querySelector("i");
@@ -58,7 +58,7 @@ const formattingTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleLoadedMetadata = () => {
-  totaltime.innerText = formattingTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
+  totalTime.innerText = formattingTime(Math.floor(video.duration)); //영상의 총 시간을 알 수 있음
   timeline.max = video.duration;
 };
 
