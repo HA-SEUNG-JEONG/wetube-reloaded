@@ -133,8 +133,8 @@ const handleEnded = () => {
 playbutton.addEventListener("click", handlePlayClick);
 mutebutton.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
-videoContainer.addEventListener("loadedmetadata", handleLoadedMetadata);
-videoContainer.addEventListener("timeupdate", hadnleTimeUpdate);
+video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("timeupdate", hadnleTimeUpdate);
 video.addEventListener("click", handleButton);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
