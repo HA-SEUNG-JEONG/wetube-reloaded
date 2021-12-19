@@ -63,15 +63,15 @@ const handleLoadedMetadata = () => {
 };
 
 const hadnleTimeUpdate = () => {
-  currenttime.innerText = formattingTime(Math.floor(video.currentTime)); // 현재 시간을 실시간으로 반영
-  timeline.value = Math.floor(video.currentTime);
+  currenttime.innerText = formattingTime(Math.floor(video.currenttime)); // 현재 시간을 실시간으로 반영
+  timeline.value = Math.floor(video.currenttime);
 };
 
 const handleTimelineChange = (event) => {
   const {
     target: { value },
   } = event;
-  video.currentTime = value;
+  video.currenttime = value;
 };
 
 const handleFullScreen = (event) => {
